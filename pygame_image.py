@@ -31,7 +31,9 @@ def main():
         if key_1st[pg.K_LEFT]:
             koukaton_rect.move_ip((-1, 0))
         if key_1st[pg.K_RIGHT]:
-            koukaton_rect.move_ip((1, 0))
+            koukaton_rect.move_ip((2, 0))
+
+        koukaton_rect.move_ip((-1, 0))
         
         screen.blit(bg_img, [bg_progress, 0])
         screen.blit(bg_img_flipped, [bg_progress_f, 0])
