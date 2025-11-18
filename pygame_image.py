@@ -20,20 +20,23 @@ def main():
 
     tmr = 0
     while True:
+        koukaton_rect_move = [0, 0]
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
         key_1st = pg.key.get_pressed()
         if key_1st[pg.K_UP]:
-            koukaton_rect.move_ip((0, -1))
+            koukaton_rect_move[1] -= 1
         if key_1st[pg.K_DOWN]:
-            koukaton_rect.move_ip((0, 1))
+            koukaton_rect_move[1] += 1
         if key_1st[pg.K_LEFT]:
-            koukaton_rect.move_ip((-1, 0))
+            koukaton_rect_move[0] -= 1
         if key_1st[pg.K_RIGHT]:
-            koukaton_rect.move_ip((2, 0))
+            koukaton_rect_move[0] += 2
 
-        koukaton_rect.move_ip((-1, 0))
+        koukaton_rect_move[0] -= 1
+
+        koukaton_rect.move_ip(koukaton_rect_move)
         
         screen.blit(bg_img, [bg_progress, 0])
         screen.blit(bg_img_flipped, [bg_progress_f, 0])
