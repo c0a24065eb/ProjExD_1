@@ -23,7 +23,7 @@ def main():
 
         bg_pos[0] -= 1
         if(bg_pos[0] <= -800):
-            screen.blit(bg_img, next_bg_img_pos)
+            screen.blit(pg.transform.flip(bg_img, True, False), next_bg_img_pos)
             next_bg_img_pos[0] -= 1
         screen.blit(bg_img, bg_pos)
         screen.blit(koukaton_img, [300, 200])
