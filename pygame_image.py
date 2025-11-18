@@ -4,15 +4,15 @@ import pygame as pg
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-
 def main():
     pg.display.set_caption("はばたけ！こうかとん")
     screen = pg.display.set_mode((800, 600))
     clock  = pg.time.Clock()
 
     bg_img = pg.image.load("fig/pg_bg.jpg")
-    bg_pos = [0, 0]
-    next_bg_img_pos = [800, 0]
+    bg_img_flipped = pg.transform.flip(bg_img, True, False)
+    bg_progress = 0
+    bg_progress_f = 1600
     koukaton_img = pg.image.load("fig/3.png")
     koukaton_img = pg.transform.flip(koukaton_img, True, False)
 
@@ -20,15 +20,17 @@ def main():
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
-
-        bg_pos[0] -= 1
-        if(bg_pos[0] <= -800):
-            screen.blit(pg.transform.flip(bg_img, True, False), next_bg_img_pos)
-            next_bg_img_pos[0] -= 1
-        screen.blit(bg_img, bg_pos)
+        screen.blit(bg_img, [bg_progress, 0])
+        screen.blit(bg_img_flipped, [bg_progress_f, 0])
         screen.blit(koukaton_img, [300, 200])
         pg.display.update()
         tmr += 1        
+        bg_progress -= 1
+        bg_progress_f -= 1
+        if(bg_progress < -1600):
+            bg_progress = 1600
+        if(bg_progress_f < -1600):
+            bg_progress_f = 1600
         clock.tick(200)
 
 
